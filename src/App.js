@@ -9,6 +9,8 @@ function App() {
     const [todos, setTodos] = useState([]);
     const [status, setStatus] = useState("all");
     const [filteredTodos, setFilteredTodos] = useState([]);
+    const [editing, setEditing] = useState(false);
+    const [editingTodoId, setEditingTodoId] = useState();
 
     useEffect(() => {
         getLocalTodos();
@@ -44,6 +46,11 @@ function App() {
         }
     };
 
+    const cancelEditHandler = () => {
+        setEditing(false);
+        setInputText("");
+    };
+
     return (
         <div className="App">
             <header>
@@ -55,8 +62,29 @@ function App() {
                 inputText={inputText}
                 setInputText={setInputText}
                 setStatus={setStatus}
+                editing={editing}
+                setEditing={setEditing}
+                editingTodoId={editingTodoId}
             />
-            <TodoList todos={todos} setTodos={setTodos} filteredTodos={filteredTodos} />
+            {editing && (
+                <p>
+                    Editing A Todo,{" "}
+                    <span
+                        onClick={cancelEditHandler}
+                        style={{ textDecoration: "underline", cursor: "pointer" }}
+                    >
+                        Cancel Editing
+                    </span>
+                </p>
+            )}
+            <TodoList
+                todos={todos}
+                setTodos={setTodos}
+                filteredTodos={filteredTodos}
+                setInputText={setInputText}
+                setEditing={setEditing}
+                setEditingTodoId={setEditingTodoId}
+            />
         </div>
     );
 }

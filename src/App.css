@@ -21,6 +21,10 @@ form {
     align-items: center;
     justify-content: center;
 }
+p {
+    text-align: center;
+    color: #333;
+}
 
 form input,
 form button {
@@ -67,7 +71,8 @@ form button:hover {
 }
 
 .trash-btn,
-.complete-btn {
+.complete-btn,
+.edit-btn {
     background: #ff6f47;
     color: #fff;
     border: none;
@@ -76,8 +81,12 @@ form button:hover {
     cursor: pointer;
     outline: none;
 }
+
 .complete-btn {
     background: rgb(73, 204, 73);
+}
+.edit-btn {
+    background: #ffd770;
 }
 .todo-item {
     padding: 0 0.5rem;
@@ -165,10 +174,13 @@ select {
     .todo-item {
         word-break: break-all;
     }
-
     .trash-btn,
-    .complete-btn {
+    .complete-btn,
+    .edit-btn {
         padding: 0.5rem;
         font-size: 5vw;
+    }
+    p {
+        font-size: 3vw;
     }
 }

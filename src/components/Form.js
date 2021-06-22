@@ -1,19 +1,45 @@
 import React from "react";
 
-const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
+const Form = ({
+    inputText,
+    setInputText,
+    todos,
+    setTodos,
+    setStatus,
+    editing,
+    setEditing,
+    editingTodoId,
+}) => {
     const inputTextHandler = (e) => {
         setInputText(e.target.value);
     };
     const submitTodoHandler = (e) => {
         e.preventDefault();
-        setTodos([
-            ...todos,
-            {
-                text: inputText,
-                completed: false,
-                id: Math.random() * 1000,
-            },
-        ]);
+        if (inputText === "") return;
+
+        if (editing) {
+            setTodos(
+                todos.map((item) => {
+                    if (item.id === editingTodoId) {
+                        return {
+                            ...item,
+                            text: inputText,
+                        };
+                    }
+                    return item;
+                })
+            );
+            setEditing(false);
+        } else {
+            setTodos([
+                ...todos,
+                {
+                    text: inputText,
+                    completed: false,
+                    id: Math.random() * 1000,
+                },
+            ]);
+        }
         setInputText("");
     };
     const statusHandler = (e) => {
@@ -24,6 +50,7 @@ const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
         <form>
             <div className="input-control">
                 <input
+                    id="form"
                     value={inputText}
                     onChange={inputTextHandler}
                     type="text"
