@@ -24,10 +24,10 @@ function App() {
     const filterHandler = () => {
         switch (status) {
             case "completed":
-                setFilteredTodos(todos.filter((todo) => todo.completed === true));
+                setFilteredTodos(todos.filter(todo => todo.completed === true));
                 break;
             case "uncompleted":
-                setFilteredTodos(todos.filter((todo) => todo.completed === false));
+                setFilteredTodos(todos.filter(todo => todo.completed === false));
                 break;
             default:
                 setFilteredTodos(todos);

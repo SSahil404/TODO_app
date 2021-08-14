@@ -171,9 +171,7 @@ select {
         margin: 0.5rem;
         font-size: 5vw;
     }
-    .todo-item {
-        word-break: break-all;
-    }
+
     .trash-btn,
     .complete-btn,
     .edit-btn {
